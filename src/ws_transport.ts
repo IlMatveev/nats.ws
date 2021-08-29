@@ -81,7 +81,11 @@ export class WsTransport implements Transport {
     this.options = options;
     const u = server.src;
     this.encrypted = u.indexOf("wss://") === 0;
-    this.socket = new WebSocket(u);
+    this.socket = new WebSocket(u, null, {
+      headers: {
+          Cookie: 'apptoken=WdsbDbFAczU9sxcsPRXG',
+      }
+    });
     this.socket.binaryType = "arraybuffer";
 
     this.socket.onopen = () => {
@@ -89,7 +93,10 @@ export class WsTransport implements Transport {
     };
 
     this.socket.onmessage = (me: MessageEvent) => {
-      this.yields.push(new Uint8Array(me.data));
+      const encoder = new TextEncoder();
+      const message = encoder.encode(me.data);
+
+      this.yields.push(new Uint8Array(message));
       if (this.peeked) {
         this.signal.resolve();
         return;

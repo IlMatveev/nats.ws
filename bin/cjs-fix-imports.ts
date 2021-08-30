@@ -94,7 +94,7 @@ for (const fn of files) {
   mod = mod.replace(/require\("(\S+).[j|t]s"\)/gim, 'require("$1")');
 
   mod = mod.replace(
-    /(https:\/\/raw.githubusercontent.com\/nats-io\/nats.deno\/\S+\/nats-base-client)/gim,
+    /(https:\/\/raw.githubusercontent.com\/IlMatveev\/nats.deno\/\S+\/nats-base-client)/gim,
     "../nats-base-client",
   );
 

@@ -8,7 +8,8 @@
     ".": {
       "require": "./nats.cjs",
       "default": "./nats.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "types": "nats.d.ts",
   "files": [
